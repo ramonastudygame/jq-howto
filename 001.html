@@ -2,10 +2,23 @@
 <head>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <title>First File</title>
-    <script></script>
+    <style>
+        .firstStyle{color:red; background-color:#ECECEC; padding:15px; font-family:'Gill Sans';}
+    </style>
+    <script>
+        $( "document" ).ready(function(){ 
+                console.log("Ramona - Your document is ready!");
+                $("#firstBtn").click(function(){
+                    console.log("You even clicked a button!");
+                    $("#firsParagraph").hide();
+        });
+    </script>
 </head>
 
 <body>
-    
+    <p id="firstParagraph">
+        This is the first paragraph.  Learning how to jQuery-and its a library.
+    </p>
+    <button id="firstBtn">TOGGLE ME</button>
 </body>
 </html>

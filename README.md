@@ -1,2 +1,3 @@
 # jq-howto
-jq-howto notes
+To run a live server:python -m SimpleHTTPServer 8000
+
