@@ -5,7 +5,8 @@
 </head>
 <body>
  <p id="firstParagraph">    </p>
-    
+ <br><br><br><br>
+ <p id="secondParagraph">    </p>
                     <script>
                     var input = {
                     "document": prompt("")
@@ -15,12 +16,15 @@
                     .pipe(input)
                     .then(function(output) {
                     console.log(output);
-
-                    console.log("Printing out sentiment results" + " " +  output.result[0]["sentiment"]);     
+                            var mySentiment =  output.result[0]["sentiment"];
+                            var myFeelings ="";
+                            if (mySentiment > .35 ){myFeelings="You sound really excited!";}else{myFeelings="You sound like you need a pep talk!";}
+                    console.log("Printing out sentiment results" + " " +  output.result[0]["sentiment"] + " " + myFeelings);     
 
                     var abcemotion = document.getElementById("firstParagraph");
+                    var abcemotion2 = document.getElementById("secondParagraph");
                     abcemotion.innerHTML = "You Entered this text:"  + " " + input.document;
-
+                    abcemotion2.innerHTML = " " + myFeelings;
                     });
 
 
