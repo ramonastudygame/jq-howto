@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<button id="displayTodosBtn" onclick="handlers.displayTodos();">DISPLAY TODOS</button>
+<br><br>
+<button id="toggleAll" onclick="handlers.toggleAll();">TOGGLE ALL</button>
+<br><br>
+<button id="toggleTodoBtn" onclick="handlers.toggleCompleted();">TOGGLE ME</button>
+<input id="toggleTodoPositionInput" type="number">
+<br><br>
+<button id="addTodoBtn" onclick="handlers.addTodo();">ADD TODO</button>
+<input id="addTodoTextInput" type="text" >
+<br><br>
+<button id="changeTodoBtn" onclick="handlers.changeTodo();">CHANGE TODO</button>
+<input id="changeTodoPositionInput" type="number" >
+<input id="changeTodoTextInput" type="text">
+<br><br>
+<button id="deleteTodoBtn" onclick="handlers.deleteTodo();">DELETE ME</button>
+<input id="deleteTodoPositionInput" type="number">
+
+
+
+
+
+
+
+
+
+
+<script>
+var todoList = {
+todos			: [],
+displayTodos	: function(){
+				  console.log("Todos are here:", this.todos);
+},
+addTodo 		: function(todoText){
+                  var today = new Date();
+                  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+				  this.todos.push({
+					todoText: todoText, completed: false, completeBy :today.toLocaleString("en-US", options)
+				  }); this.displayTodos();
+}, 
+changeTodo  	: function(position, todoText){
+				   this.todos[position].todoText = todoText;
+				   this.displayTodos();	
+},
+deleteTodo		: function(position){
+				   this.todos.splice(position, 1); this.displayTodos();
+},
+toggleCompleted	: function(position){
+				   var todo = this.todos[position];
+				   todo.completed = !todo.completed; this.displayTodos();	
+},
+toggleAll   	: function(){
+				  //First Get Completed Todos
+				  var completedTodos = ""; var totalTodos = this.todos.length;
+				  for (i=0; i<totalTodos; i++){
+					if (this.todos[i].completed === true){completedTodos++;}
+				  }//End of For Loop determining Completed Todos Value
+				  
+				  //Inside the If Statement, there are 2 For Loops; One belonging to Else	
+                    if (completedTodos === totalTodos){
+                        for (i =0; i<totalTodos; i++){
+                            this.todos[i].completed = false;}}
+                        else {for (i =0; i<totalTodos; i++){
+                            this.todos[i].completed = true;}}
+                        this.displayTodos();
+					
+					
+}
+};//End of todoList Object
+var handlers = {
+displayTodos    : function(){
+                  todoList.displayTodos();
+},
+addTodo			: function(){
+				  var addTodoTextInput = document.getElementById("addTodoTextInput");
+				  todoList.addTodo(addTodoTextInput.value);
+},
+changeTodo		:function(){
+				 var changeTodoPositionInput = document.getElementById("changeTodoPositionInput");
+				 var changeTodoTextInput = document.getElementById("changeTodoTextInput");
+				 todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
+},
+deleteTodo		:function(){
+				var deleteTodoPositionInput = document.getElementById("deleteTodoPositionInput");
+				todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
+},
+toggleCompleted :function(){
+				var toggleTodoPositionInput = document.getElementById("toggleTodoPositionInput");
+				todoList.toggleCompleted(toggleTodoPositionInput.valueAsNumber);
+},
+toggleAll		:function(){
+				todoList.toggleAll();
+}
+};//End of handlers Object
+
+</script>
+</body>
+</html>
