@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>YT_Test</title>
+</head>
+<body>
+
+    <button id = kittyBtn>SHOW ME KITTENS</button>
+    
+    <div id="kittyContainer">
+
+    </div>
+
+</body>
+
+<script>
+var response = {
+    "image_upload_response":{
+        "errors": false,
+        "locales": [
+            {
+                "locale":"en_US",
+                "medias":[
+                    {
+                        "id":123456,
+                        "default":false,
+                        "src":"//placekitten.com/200/300"
+                    },
+                    {
+                        "id":122456,
+                        "default":true,
+                        "src":"//placekitten.com/200/200"
+                    }
+                ]
+            },
+            {
+                "locale":"en_FR",
+                "medias":[
+                    {
+                        "id": 133456,
+                        "default": false,
+                        "src": "//placekitten.com/300/100"
+                    },
+                    {
+                        "id": 132456,
+                        "default": true,
+                        "src": "//placekitten.com/300/200"
+                    }
+                ]
+            }
+        ]
+    }
+};
+
+var finalResponse = {
+finalArray     :[],
+addArray    :function(){
+              //find length of locals (contains locale, media) information
+              var counter = response.image_upload_response.locales.length;
+              console.log(counter);
+              for (i = 0; i<counter; i++){
+                this.finalArray.push({
+                    newID:response.image_upload_response.locales[i].medias[i].id,
+                    newSrc:response.image_upload_response.locales[i].medias[i].src
+                });
+               }
+}
+};
+
+</script>
+
+
+
+</html>
